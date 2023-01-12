@@ -27,8 +27,10 @@ func (r *Router) SetWebsite() {
 	sv := tickets.NewService(rp)
 	h := handlers.NewTicket(sv)
 
-	prod := r.en.Group("/tickets")
+	prod := r.en.Group("/ticket")
 
 	prod.GET("/", h.GetAll())
+	prod.GET("/getByCountry/:dest", h.GetTicketsByCountry())
+	prod.GET("/getAverage/:dest", h.AverageDestination())
 
 }

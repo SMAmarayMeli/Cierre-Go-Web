@@ -42,5 +42,5 @@ func (sv *service) AverageDestination(ctx context.Context, destination string) (
 		return 0, errDest
 	}
 
-	return float64(len(totalDest) * len(total) / 100), nil
+	return float64(len(totalDest)) * 100 / float64(len(total)), nil
 }
