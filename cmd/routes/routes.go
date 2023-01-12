@@ -25,10 +25,10 @@ func (r *Router) SetWebsite() {
 	// instances
 	rp := tickets.NewRepository(*r.db)
 	sv := tickets.NewService(rp)
-	h := handlers.NewService(sv)
+	h := handlers.NewTicket(sv)
 
-	prod := r.en.Group("/products")
+	prod := r.en.Group("/tickets")
 
-	prod.GET("/", h.GetTicketsByCountry())
+	prod.GET("/", h.GetAll())
 
 }

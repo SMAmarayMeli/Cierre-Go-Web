@@ -1,4 +1,4 @@
-package tickets
+package product
 
 import (
 	"context"

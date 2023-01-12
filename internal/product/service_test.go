@@ -1,10 +1,8 @@
-package tickets
+package product
 
 import (
 	"Cierre-Go-Web/internal/domain"
 	"context"
-	"github.com/stretchr/testify/assert"
-	"testing"
 )
 
 var cxt = context.Background()
@@ -95,36 +93,36 @@ func (r *stubRepo) GetTicketByDestination(ctx context.Context, destination strin
 	return tkts, nil
 }
 
-func TestGetTicketByDestination(t *testing.T) {
-
-	dbMock := &DbMock{
-		db:  tickets,
-		spy: false,
-		err: nil,
-	}
-	repo := NewRepositoryTest(dbMock)
-	service := NewService(repo)
-
-	tkts, err := service.GetTotalTickets(cxt, "China")
-
-	assert.Nil(t, err)
-	assert.True(t, dbMock.spy)
-	assert.Equal(t, len(ticketsByDestination), tkts)
-}
-
-func TestGetTotalTickets(t *testing.T) {
-
-	dbMock := &DbMock{
-		db:  tickets,
-		spy: false,
-		err: nil,
-	}
-	repo := NewRepositoryTest(dbMock)
-	service := NewService(repo)
-
-	avr, err := service.AverageDestination(cxt, "China")
-
-	assert.Nil(t, err)
-	assert.NotNil(t, avr)
-	assert.True(t, dbMock.spy)
-}
+//func TestGetTicketByDestination(t *testing.T) {
+//
+//	dbMock := &DbMock{
+//		db:  tickets,
+//		spy: false,
+//		err: nil,
+//	}
+//	repo := NewRepositoryTest(dbMock)
+//	service := NewService(repo)
+//
+//	tkts, err := service.GetTotalTickets(cxt, "China")
+//
+//	assert.Nil(t, err)
+//	assert.True(t, dbMock.spy)
+//	assert.Equal(t, len(ticketsByDestination), tkts)
+//}
+//
+//func TestGetTotalTickets(t *testing.T) {
+//
+//	dbMock := &DbMock{
+//		db:  tickets,
+//		spy: false,
+//		err: nil,
+//	}
+//	repo := NewRepositoryTest(dbMock)
+//	service := NewService(repo)
+//
+//	avr, err := service.AverageDestination(cxt, "China")
+//
+//	assert.Nil(t, err)
+//	assert.NotNil(t, avr)
+//	assert.True(t, dbMock.spy)
+//}

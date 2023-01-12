@@ -7,12 +7,22 @@ import (
 )
 
 type Service struct {
-	service tickets.Service
+	service product.Service
 }
 
-func NewService(s tickets.Service) *Service {
-	return &Service{
-		service: s,
+func NewTicket(sv product.Service) *Service {
+	return &Service{service: sv}
+}
+
+func (s *Service) GetAll() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		tickets, err := s.service.GetAll(c)
+		if err != nil {
+			c.JSON(http.StatusInternalServerError, "")
+			return
+		}
+
+		c.JSON(200, tickets)
 	}
 }
 
