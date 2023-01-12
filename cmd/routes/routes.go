@@ -3,7 +3,7 @@ package routes
 import (
 	"Cierre-Go-Web/cmd/handlers"
 	"Cierre-Go-Web/internal/domain"
-	tickets "Cierre-Go-Web/internal/product"
+	"Cierre-Go-Web/internal/product"
 	"github.com/gin-gonic/gin"
 )
 
@@ -23,8 +23,8 @@ func (r *Router) SetRoutes() {
 // website
 func (r *Router) SetWebsite() {
 	// instances
-	rp := tickets.NewRepository(*r.db)
-	sv := tickets.NewService(rp)
+	rp := product.NewRepository(*r.db)
+	sv := product.NewService(rp)
 	h := handlers.NewTicket(sv)
 
 	prod := r.en.Group("/ticket")
